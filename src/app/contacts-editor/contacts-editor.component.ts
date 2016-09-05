@@ -26,11 +26,11 @@ export class ContactsEditorComponent implements OnInit {
 
   save(contact: Contact) {
     this._contactsService.updateContact(contact)
-      .subscribe(response => { this._router.navigate(['/contact/' + this.contact.id]);});
+      .subscribe(response => { this._router.navigate(['/contact/' + contact.id]);});
   }
 
   cancel(contact: Contact) {
-    this._router.navigate(['/contact/' + this.contact.id]);
+    this._router.navigate(['/contact/' + contact.id]);
   }
 
 }
