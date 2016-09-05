@@ -14,7 +14,7 @@ export class ContactsAppComponent {
     phone: '',
     birthday: '',
     website: '',
-    image: '/assets/images/7.jpg',
+    image: '/assets/images/6.jpg',
     address: {
       street: '6554 park lane',
       zip: '43378',
