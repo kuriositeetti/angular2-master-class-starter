@@ -12,7 +12,7 @@ export class ContactsService {
   }
 
   getContact(id: number | string):Contact {
-    return CONTACT_DATA.find(contact => contact.id == id);
+    return this.getContacts().find(contact => contact.id == id);
   }
 
 }
