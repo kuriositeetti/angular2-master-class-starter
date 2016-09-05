@@ -23,4 +23,10 @@ export class ContactsService {
     .map(data => data.item);
   }
 
+  updateContact(contact: Contact) {
+      let url = this.apiUrl + contact.id;
+
+      return this._http.put(url, contact);
+    }
+
 }
