@@ -1,6 +1,8 @@
 <ul class="collection">
   <li *ngFor="let contact of contacts" class="collection-item avatar">
-    <img [src]="contact.image" alt="" class="circle">
-    <span class="title">{{ contact.name }}</span>
+    <a [routerLink]="['/contact', contact.id]">
+      <img [src]="contact.image" alt="" class="circle">
+      <span class="title">{{ contact.name }}</span>
+    </a>
   </li>
 </ul>
