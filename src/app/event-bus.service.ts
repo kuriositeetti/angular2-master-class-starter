@@ -17,7 +17,7 @@ export class EventBusService {
   }
 }
 
-class EventBusArgs {
+export class EventBusArgs {
   type: string;
   data: any;
 }

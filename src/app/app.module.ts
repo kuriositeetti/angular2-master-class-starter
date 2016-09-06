@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
@@ -37,7 +37,11 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
     HttpModule,
     FormsModule
   ],
-  providers: [ContactsService, EventBusService],
+  providers: [
+    ContactsService,
+    EventBusService,
+    Title
+  ],
   bootstrap: [ContactsAppComponent]
 })
 export class ContactsModule {
