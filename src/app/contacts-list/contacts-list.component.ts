@@ -14,6 +14,17 @@ export class ContactsListComponent implements OnInit {
   constructor(private _contactsService: ContactsService) { }
 
   ngOnInit() {
+    this.getAllContacts();
+  }
+
+  search(term: string) {
+    if(term !== '')
+      this.contacts = this._contactsService.search(term);
+    else
+      this.getAllContacts();
+  }
+
+  getAllContacts() {
     this.contacts = this._contactsService.getContacts();
   }
 
