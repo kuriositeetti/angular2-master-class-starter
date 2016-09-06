@@ -10,7 +10,7 @@ import { EventBusService } from '../event-bus.service';
   styleUrls: ['contacts-detail-view.component.css']
 })
 export class ContactsDetailViewComponent implements OnInit {
-  contact:Contact;
+  contact: Contact;
   constructor(
     private _route: ActivatedRoute,
     private _contactsService: ContactsService,
@@ -18,13 +18,15 @@ export class ContactsDetailViewComponent implements OnInit {
     private _eventBusService: EventBusService) { }
 
   ngOnInit() {
-    let id = parseInt(this._route.snapshot.params['id']).toString();
-    this._contactsService.getContact(id)
-      .subscribe((contact) => {
-        this.contact = contact;
-        this._eventBusService.emit('appTitleChange', this.contact.name);
-      }
-    );
+    this._route.params.subscribe(params => {
+      let id = params['id'];
+      this._contactsService.getContact(id)
+        .subscribe((contact) => {
+          this.contact = contact;
+          this._eventBusService.emit('appTitleChange', this.contact.name);
+        }
+      );
+    });
   }
 
   navigateToEditor(contact: Contact) {
