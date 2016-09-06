@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Subject } from 'rxjs/Subject';
 
 import { Contact } from './models/contact';
 import { CONTACT_DATA } from './data/contact-data';
 
 @Injectable()
 export class ContactsService {
-  apiUrl: string = 'http://localhost:4201/api/'
+  apiUrl: string = 'http://localhost:4201/api/';
+  private _terms$ = new Subject<string>();
   constructor(private _http: Http) {
 
   }
@@ -29,10 +31,16 @@ export class ContactsService {
     return this._http.put(url, contact);
   }
 
-  search(term: string) {
+  rawSearch(term: string) {
     return this._http.get(this.apiUrl + 'search?text=' + term)
       .map(response => response.json())
       .map(data => data.items);
+  }
+
+  search(term$: Subject<string>) {
+    return term$.debounceTime(400)
+    .distinctUntilChanged() // Observable<string>
+      .switchMap(term => this.rawSearch(term)); // Obsservable<Contact[]>
   }
 
 }

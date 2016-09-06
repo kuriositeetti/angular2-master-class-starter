@@ -17,10 +17,8 @@ export class ContactsListComponent implements OnInit {
   constructor(private _contactsService: ContactsService) { }
 
   ngOnInit() {
-    this.contacts = this._terms$.debounceTime(400)
-      .distinctUntilChanged() // Observable<string>
-      .switchMap(term => this._contactsService.search(term)) // Obsservable<Contact[]>
-      .merge(this._contactsService.getContacts());
+    this.contacts = this._contactsService.search(this._terms$)
+      .merge(this._contactsService.getContacts().takeUntil(this._terms$));
   }
 
 }
