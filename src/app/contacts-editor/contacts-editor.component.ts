@@ -11,6 +11,7 @@ import { EventBusService } from '../event-bus.service';
 })
 export class ContactsEditorComponent implements OnInit {
   contact: Contact = <Contact>{ address: {}};
+  hasSaved: boolean = false;
 
   constructor(
     private _route: ActivatedRoute,
@@ -31,7 +32,11 @@ export class ContactsEditorComponent implements OnInit {
 
   save(contact: Contact) {
     this._contactsService.updateContact(contact)
-      .subscribe(response => { this._router.navigate(['/contact/' + contact.id]);});
+      .subscribe(response => {
+        // disable guard
+        this.hasSaved = true;
+        this._router.navigate(['/contact/' + contact.id]);
+      });
   }
 
   cancel(contact: Contact) {

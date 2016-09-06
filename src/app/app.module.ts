@@ -44,7 +44,11 @@ import { AboutComponent } from './about/about.component';
   providers: [
     ContactsService,
     EventBusService,
-    Title
+    Title,
+    {
+      provide: 'DATA_SAVED',
+      useValue: (component) => component.hasSaved || window.confirm('Are you sure?')
+    }
   ],
   bootstrap: [ContactsAppComponent]
 })
