@@ -15,6 +15,7 @@ import 'rxjs/add/operator/takeUntil';
 import { ContactsAppComponent } from './contacts.component';
 import { ContactsHeaderComponent } from './contacts-header/contacts-header.component';
 import { ContactsService } from './contacts.service';
+import { EventBusService } from './event-bus.service';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ContactsAppRoutes } from './app.routes';
 import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
@@ -36,7 +37,7 @@ import { ContactsDetailViewComponent } from './contacts-detail-view/contacts-det
     HttpModule,
     FormsModule
   ],
-  providers: [ContactsService],
+  providers: [ContactsService, EventBusService],
   bootstrap: [ContactsAppComponent]
 })
 export class ContactsModule {
